@@ -1,0 +1,13 @@
+{
+    "name": "shoppingcart.myproject",
+    "scripts": {
+        "build:workspaces": "npm run build --workspaces --if-present",
+        "lint": "npm run lint --workspaces --if-present",
+        "ui5lint": "npm run ui5lint --workspaces --if-present",
+        "start:shoppingapp": "npm start --workspace shoppingapp"
+    },
+    "dependencies": {},
+    "workspaces": [
+        "shoppingapp"
+    ]
+}

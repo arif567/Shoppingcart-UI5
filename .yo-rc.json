@@ -1,0 +1,13 @@
+{
+  "generator-ui5-project": {
+    "namespaceUI5": "shoppingcart",
+    "projectName": "myproject",
+    "uimoduleName": "shoppingapp",
+    "enableFPM": false,
+    "platform": "SAP NetWeaver",
+    "ui5Libs": "Content delivery network (SAPUI5)",
+    "newDir": true,
+    "initRepo": true,
+    "projectId": "shoppingcart.myproject"
+  }
+}

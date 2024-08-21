@@ -1,0 +1,27 @@
+specVersion: "3.1"
+metadata:
+  name: shoppingapp
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: replaceVersion
+      configuration:
+        target:
+          url: https://<my-server>:<my-port>
+          client: 200
+          auth: basic
+        credentials:
+          username: env:myUser
+          password: env:myPassword
+        app:
+          name: shoppingapp
+          description: Generated with easy-ui5
+          package: <my-package>
+          transport: <my-transport>
+        exlude:
+          - /test/
