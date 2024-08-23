@@ -8,6 +8,9 @@
     "ui5Libs": "Content delivery network (SAPUI5)",
     "newDir": true,
     "initRepo": true,
-    "projectId": "shoppingcart.myproject"
+    "projectId": "shoppingcart.myproject",
+    "uimodules": [
+      "shoppingapp"
+    ]
   }
 }

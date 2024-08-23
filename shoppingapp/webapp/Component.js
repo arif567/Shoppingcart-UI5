@@ -4,14 +4,16 @@
 
 sap.ui.define([
         "sap/ui/core/UIComponent",
+        "./model/LocalStorageModel",
         "sap/ui/Device",
         "shoppingapp/model/models"
     ],
-    function (UIComponent, Device, models) {
+    function (UIComponent, LocalStorageModel,Device, models) {
         "use strict";
 
         return UIComponent.extend("shoppingapp.Component", {
             metadata: {
+               
                 manifest: "json"
             },
 
@@ -21,6 +23,26 @@ sap.ui.define([
              * @override
              */
             init: function () {
+
+                //create and set cart model
+			var oCartModel = new LocalStorageModel("SHOPPING_CART", {
+				cartEntries: {},
+				savedForLaterEntries: {}
+			});
+			this.setModel(oCartModel, "cartProducts");
+
+			//create and set comparison model
+			var oComparisonModel = new LocalStorageModel("PRODUCT_COMPARISON", {
+				category: "",
+				item1: "",
+				item2: ""
+			});
+			this.setModel(oComparisonModel, "comparison");
+
+
+
+
+
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
 

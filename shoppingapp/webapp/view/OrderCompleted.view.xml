@@ -1,0 +1,8 @@
+<mvc:View controllerName="shoppingapp.controller.OrderCompleted"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	displayBlock="true">
+	<Page id="page" title="{i18n>ordercompleted}">
+        <content />
+    </Page>
+</mvc:View>

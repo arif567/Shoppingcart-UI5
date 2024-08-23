@@ -13,6 +13,17 @@
         "sourceTemplate": {
             "id": "@sap-ux/fiori-freestyle-writer:basic",
             "version": "0.21.10"
+        },
+        "dataSources": {
+            "defaultDataSource": {
+                "uri": "/sap/opu/odata/sap/ZA_EPM_SHOPINGCART_02_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
         }
     },
     "sap.ui": {
@@ -32,7 +43,7 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": true,
+        "flexEnabled": false,
         "dependencies": {
             "minUI5Version": "1.120.13",
             "libs": {
@@ -50,6 +61,11 @@
                 "settings": {
                     "bundleName": "shoppingapp.i18n.i18n"
                 }
+            },
+            "": {
+                "dataSource": "defaultDataSource",
+                "preload": true,
+                "settings": {}
             }
         },
         "resources": {
@@ -61,22 +77,120 @@
         },
         "routing": {
             "config": {
-                "routerClass": "sap.m.routing.Router",
+                "routerClass": "sap.f.routing.Router",
                 "viewType": "XML",
                 "async": true,
                 "viewPath": "shoppingapp.view",
-                "controlAggregation": "pages",
-                "controlId": "app",
+                "controlAggregation": "midColumnPages",
+                "controlId": "layout",
                 "clearControlAggregation": false
+                
             },
             "routes": [
                 {
                     "name": "RouteMainView",
-                    "pattern": ":?query:",
+                    "pattern": "xxxx",
                     "target": [
                         "TargetMainView"
                     ]
+                },
+                {
+                    "name": "RouteWelcome",
+                    "pattern": "welcome",
+                    "target": [
+                        "TargetWelcome"
+                    ]
+                },
+                {
+                    "name": "RouteProduct",
+                    "pattern": "category/{id}/product/{productId}",
+                    "target": [
+                        "TargetCategory",
+                        "TargetProduct"
+                    ]
+                },
+                {
+                    "name": "RouteOrderCompleted",
+                    "pattern": "ordercompleted",
+                    "target": [
+                        "TargetOrderCompleted"
+                    ]
+                },
+                {
+                    "name": "RouteNotFound",
+                    "pattern": "notfound",
+                    "target": [
+                        "TargetNotFound"
+                    ]
+                },
+                {
+                    "name": "RouteHome",
+                    "pattern": "",
+                    "target": [
+                        "TargetHome",
+                        "TargetWelcome"
+                    ]
+                },
+                {
+                    "name": "RouteComparison",
+                    "pattern": "category/{id}/compare/:item1Id:/:item2Id:",
+                    "target": [
+                        "TargetCategory",
+                        "TargetComparison"
+                    ]
+                },
+                {
+                    "name": "RouteComparisonCart",
+                    "pattern": "category/{id}/compare/:item1Id:/:item2Id:/cart",
+                    "target": [
+                        "TargetCategory",
+                        "TargetComparison",
+                        "TargetCart"
+                    ]
+                },
+                {
+                    "name": "RouteCheckout",
+                    "pattern": "checkout",
+                    "target": [
+                        "TargetCheckout"
+                    ]
+                },
+                {
+                    "name": "RouteCategory",
+                    "pattern": "category/{id}",
+                    "target": [
+                        "TargetCategory",
+                        "TargetWelcome"
+                    ]
+                },
+                {
+                    "name": "RouteCategories",
+                    "pattern": "categories",
+                    "target": [
+                        "TargetHome",
+                        "TargetWelcome"
+                    ]
+                },
+                {
+                    "name": "RouteCart",
+                    "pattern": "cart",
+                    "target": [
+                        "TargetHome",
+                        "TargetWelcome",
+                        "TargetCart"
+                    ]
+                },
+                {
+                    "name": "RouteProductCart",
+                    "pattern": "category/{id}/product/{productId}/cart",
+                    "target": [
+                        "TargetProduct",
+                        "TargetCategory",
+                        "TargetCart"
+                    ]
                 }
+
+
             ],
             "targets": {
                 "TargetMainView": {
@@ -85,6 +199,86 @@
                     "clearControlAggregation": false,
                     "viewId": "MainView",
                     "viewName": "MainView"
+                },
+                "TargetWelcome": {
+                    "level": 0,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Welcome",
+                    "viewName": "Welcome",
+                    "controlAggregation": "midColumnPages"
+                },
+                "TargetProduct": {
+                    "level": 3,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Product",
+                    "viewName": "Product",
+                    "controlAggregation": "midColumnPages"
+                },
+                "TargetOrderCompleted": {
+                    "level": 2,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "OrderCompleted",
+                    "viewName": "OrderCompleted",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "TargetNotFound": {
+                    "level": 3,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "NotFound",
+                    "viewName": "NotFound",
+                    "controlAggregation": "midColumnPages"
+                },
+                "TargetHome": {
+                    "level": 1,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Home",
+                    "viewName": "Home",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "TargetComparison": {
+                    "level": 3,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Comparison",
+                    "viewName": "Comparison",
+                    "controlAggregation": "midColumnPages"
+                },
+                "TargetCheckout": {
+                    "level": 1,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Checkout",
+                    "viewName": "Checkout",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "TargetCategory": {
+                    "level": 2,
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Category",
+                    "viewName": "Category",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "TargetCart": {
+                    "viewType": "XML",
+                    "transition": "Slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Cart",
+                    "viewName": "Cart",
+                    "controlAggregation": "endColumnPages"
                 }
             }
         },

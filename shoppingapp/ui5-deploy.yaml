@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
 specVersion: "3.1"
 metadata:
   name: shoppingapp
@@ -9,19 +11,15 @@ builder:
       - /localService/**
   customTasks:
     - name: deploy-to-abap
-      afterTask: replaceVersion
+      afterTask: generateCachebusterInfo
       configuration:
         target:
-          url: https://<my-server>:<my-port>
-          client: 200
-          auth: basic
-        credentials:
-          username: env:myUser
-          password: env:myPassword
+          url: http://localhost:50000/
+          client: '001'
         app:
-          name: shoppingapp
-          description: Generated with easy-ui5
-          package: <my-package>
-          transport: <my-transport>
-        exlude:
+          name: ZA_SHOPINGCART1
+          description: Shopping cart Application July 2024
+          package: $tmp
+          transport: ''
+        exclude:
           - /test/
